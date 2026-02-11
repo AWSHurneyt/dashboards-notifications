@@ -16,7 +16,6 @@ import { CoreServicesContext } from '../../../components/coreServices';
 import { ServicesContext } from '../../../services';
 import { ChannelDetailsActions } from '../components/details/ChannelDetailsActions';
 import { setupCoreStart } from '../../../../test/utils/helpers';
-import { createRoot } from 'react-dom/client';
 
 beforeAll(() => {
   setupCoreStart();
@@ -46,10 +45,7 @@ describe('<ChannelDetailsActions /> spec', () => {
         </CoreServicesContext.Provider>
       </ServicesContext.Provider>
     );
-    utils.getByText('Actions').click();
-    await act(async () => {
-      fireEvent.click(utils.getByText('Actions'));
-    });
+    await act(async () => fireEvent.click(utils.getByText('Actions')));
     expect(utils.container.firstChild).toMatchSnapshot();
   });
 
